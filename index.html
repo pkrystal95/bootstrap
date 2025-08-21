@@ -70,115 +70,8 @@
         </div>
 
         <div class="main-panel">
-          <div class="editor-group">
-            <ul
-              class="nav nav-tabs editor-tabs px-2"
-              id="fileTabs"
-              role="tablist"
-              style="border-bottom-color: #444"
-            >
-              <li class="nav-item" role="presentation">
-                <a
-                  class="nav-link active d-flex align-items-center"
-                  id="html-tab"
-                  data-bs-toggle="tab"
-                  href="#html-content"
-                  role="tab"
-                  aria-controls="html-content"
-                  aria-selected="true"
-                >
-                  <i class="bi bi-filetype-html me-1 text-warning"></i>
-                  index.html
-                  <i class="bi bi-x ms-2 tab-close"></i>
-                </a>
-              </li>
-              <li class="nav-item" role="presentation">
-                <a
-                  class="nav-link d-flex align-items-center"
-                  id="md-tab"
-                  data-bs-toggle="tab"
-                  href="#md-content"
-                  role="tab"
-                  aria-controls="md-content"
-                  aria-selected="false"
-                >
-                  <i class="bi bi-filetype-md me-1 text-info"></i> README.md
-                  <i class="bi bi-x ms-2 tab-close"></i>
-                </a>
-              </li>
-            </ul>
-
-            <div class="tab-content editor-code" id="fileTabsContent">
-              <div
-                class="tab-pane fade show active"
-                id="html-content"
-                role="tabpanel"
-                aria-labelledby="html-tab"
-              >
-                <pre
-                  class="line-numbers"
-                ><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang="ko"&gt;
-  &lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;title&gt;Bootstrap&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;h1&gt;index.html 파일의 내용입니다.&lt;/h1&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</code></pre>
-              </div>
-              <div
-                class="tab-pane fade"
-                id="md-content"
-                role="tabpanel"
-                aria-labelledby="md-tab"
-              >
-                <pre
-                  class="line-numbers"
-                ><code class="language-markdown"># README.md 파일
-
-이것은 **README.md** 파일의 내용입니다.
-
-- Bootstrap 5를 사용합니다.
-- VS Code UI를 클론합니다.
-</code></pre>
-              </div>
-            </div>
-          </div>
-
-          <div class="terminal-panel">
-            <div class="terminal-header">
-              <ul class="nav terminal-tabs">
-                <li class="nav-item"><a class="nav-link" href="#">문제</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">출력</a></li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">디버그 콘솔</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" href="#">터미널</a>
-                </li>
-              </ul>
-              <div class="terminal-actions text-muted">...</div>
-            </div>
-
-            <div class="terminal-body">
-              <div class="terminal-prompt">
-                <span>user@machine</span>:<span class="prompt-path"
-                  >~/project/bootstrap</span
-                ><span class="prompt-user"> (main)</span>$ ls -l
-              </div>
-              <div>total 8</div>
-              <div>-rw-r--r-- 1 sjpark staff 1234 Aug 21 13:31 index.html</div>
-              <div>-rw-r--r-- 1 sjpark staff 256 Aug 21 13:30 README.md</div>
-              <div class="terminal-prompt">
-                <span>user@machine</span>:<span class="prompt-path"
-                  >~/project/bootstrap</span
-                ><span class="prompt-user"> (main)</span>$
-                <span class="blinking-cursor">|</span>
-              </div>
-            </div>
-          </div>
+          <div id="editor-container"></div>
+          <div id="terminal-container"></div>
         </div>
       </div>
 
@@ -206,6 +99,37 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+    <script>
+      // 에디터 탭 삽입
+      fetch("/component/editor-tabs.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("editor-container").innerHTML = html;
+
+          // 각 파일 내용 로드
+          fetch("/content/html-content.html")
+            .then((res) => res.text())
+            .then((htmlContent) => {
+              document.getElementById("fileTabsContent").innerHTML +=
+                htmlContent;
+            });
+
+          fetch("/content/md-content.html")
+            .then((res) => res.text())
+            .then((mdContent) => {
+              document.getElementById("fileTabsContent").innerHTML += mdContent;
+            });
+        });
+
+      // 터미널 탭 삽입
+      fetch("/component/terminal-tabs.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("terminal-container").innerHTML = html;
+        });
+    </script>
+
     <script src="script.js"></script>
   </body>
 </html>
