@@ -17,149 +17,8 @@
       rel="stylesheet"
     />
 
-    <style>
-      body,
-      html {
-        height: 100%;
-        margin: 0;
-        overflow: hidden;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-      }
-      .main-wrapper {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-      }
-      .content-wrapper {
-        display: flex;
-        flex-grow: 1;
-        overflow: hidden;
-      }
-      .activity-bar {
-        flex: 0 0 50px;
-        background-color: #333;
-        padding-top: 10px;
-      }
-      .sidebar {
-        flex: 0 0 250px;
-        background-color: #252526;
-        padding: 10px;
-        font-size: 0.9em;
-      }
-      .main-panel {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-      }
-      .editor-group {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        background-color: #1e1e1e;
-      }
-      .editor-tabs .nav-link {
-        color: #888;
-        border: 0;
-        border-bottom: 1px solid transparent;
-      }
-      .editor-tabs .nav-link.active {
-        color: #fff;
-        background-color: #1e1e1e !important;
-        border-bottom: 1px solid #007acc !important;
-      }
-
-      /* 코드 영역 */
-      .editor-code {
-        background: transparent;
-        padding: 15px;
-      }
-      .editor-code .tab-pane {
-        background: transparent !important;
-      }
-      /* 탭 닫기 버튼(X) */
-      .editor-tabs .tab-close {
-        font-size: 0.9em;
-        opacity: 0;
-        transition: opacity 0.2s;
-        cursor: pointer;
-      }
-      .editor-tabs .nav-link:hover .tab-close {
-        opacity: 1;
-      }
-
-      /* 터미널 */
-      .terminal-panel {
-        flex: 0 0 250px;
-        background-color: #252526;
-        display: flex;
-        flex-direction: column;
-        border-top: 1px solid #444;
-      }
-      .terminal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 10px;
-      }
-      .terminal-tabs .nav-link {
-        color: #888;
-        padding: 8px 12px;
-      }
-      .terminal-tabs .nav-link.active {
-        color: #fff;
-        background-color: transparent !important;
-        border-bottom: 1px solid #fff;
-      }
-      .terminal-body {
-        flex-grow: 1;
-        padding: 10px;
-        font-family: "Menlo", "Consolas", monospace;
-        font-size: 0.9em;
-        background-color: #1e1e1e;
-        overflow-y: auto;
-      }
-      .terminal-prompt {
-        color: #ccc;
-      }
-      .prompt-user {
-        color: #3d9dff;
-      }
-      .prompt-path {
-        color: #c586c0;
-      }
-
-      /* 상태 바 */
-      .status-bar {
-        flex-shrink: 0;
-        background-color: #007acc;
-        color: white;
-        padding: 4px 15px;
-        font-size: 0.8em;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .status-bar a {
-        color: white;
-        text-decoration: none;
-      }
-      .status-bar a:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-      }
-      .status-left,
-      .status-right {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-      }
-      .status-item {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        padding: 2px 5px;
-      }
-    </style>
+    <!-- CSS 불러오기 -->
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="main-wrapper">
@@ -286,7 +145,7 @@
 
           <div class="terminal-panel">
             <div class="terminal-header">
-              <ul class="nav nav-tabs terminal-tabs" style="border-bottom: 0">
+              <ul class="nav terminal-tabs">
                 <li class="nav-item"><a class="nav-link" href="#">문제</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">출력</a></li>
                 <li class="nav-item">
@@ -296,19 +155,9 @@
                   <a class="nav-link active" href="#">터미널</a>
                 </li>
               </ul>
-              <div class="terminal-actions text-muted">
-                <a href="#" class="text-reset px-1"
-                  ><i class="bi bi-plus"></i
-                ></a>
-                <a href="#" class="text-reset px-1"
-                  ><i class="bi bi-trash"></i
-                ></a>
-                <a href="#" class="text-reset px-1"
-                  ><i class="bi bi-chevron-up"></i
-                ></a>
-                <a href="#" class="text-reset px-1"><i class="bi bi-x"></i></a>
-              </div>
+              <div class="terminal-actions text-muted">...</div>
             </div>
+
             <div class="terminal-body">
               <div class="terminal-prompt">
                 <span>user@machine</span>:<span class="prompt-path"
@@ -350,119 +199,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        document.querySelectorAll(".tab-close").forEach((btn) => {
-          btn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            const tab = e.target.closest(".nav-link");
-            const tabId = tab.getAttribute("href");
-            const li = tab.parentElement;
-
-            li.remove();
-            if (tabId) {
-              const pane = document.querySelector(tabId);
-              if (pane) pane.remove();
-            }
-
-            const firstTab = document.querySelector(
-              ".editor-tabs .nav-link:not(.active)"
-            );
-            if (firstTab) {
-              new bootstrap.Tab(firstTab).show();
-            }
-          });
-        });
-      });
-    </script>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        // 탭 닫기 버튼(X)
-        function bindCloseEvents() {
-          document.querySelectorAll(".tab-close").forEach((btn) => {
-            btn.onclick = (e) => {
-              e.stopPropagation();
-              const tab = e.target.closest(".nav-link");
-              const tabId = tab.getAttribute("href");
-              const li = tab.parentElement;
-
-              li.remove();
-              if (tabId) {
-                const pane = document.querySelector(tabId);
-                if (pane) pane.remove();
-              }
-
-              const firstTab = document.querySelector(
-                ".editor-tabs .nav-link:not(.active)"
-              );
-              if (firstTab) new bootstrap.Tab(firstTab).show();
-            };
-          });
-        }
-        bindCloseEvents();
-
-        // 사이드바 파일 클릭 → 탭 열기
-        document.querySelectorAll(".sidebar [data-tab-id]").forEach((item) => {
-          item.addEventListener("click", (e) => {
-            e.preventDefault();
-            const tabId = item.getAttribute("data-tab-id");
-            const existingTab = document.getElementById(tabId);
-
-            if (existingTab) {
-              // 이미 열려있으면 활성화
-              new bootstrap.Tab(existingTab).show();
-            } else {
-              // 새 탭 생성
-              const fileName = item.innerText.trim();
-              const fileIcon = item.querySelector("i").outerHTML;
-              const contentId = fileName.replace(/\W+/g, "-") + "-content";
-              const fileTabs = document.getElementById("fileTabs");
-              const fileTabsContent =
-                document.getElementById("fileTabsContent");
-
-              // 탭 추가
-              const li = document.createElement("li");
-              li.className = "nav-item";
-              li.innerHTML = `
-            <a class="nav-link d-flex align-items-center" id="${tabId}"
-               data-bs-toggle="tab" href="#${contentId}" role="tab"
-               aria-controls="${contentId}" aria-selected="false">
-              ${fileIcon} ${fileName}
-              <i class="bi bi-x ms-2 tab-close"></i>
-            </a>`;
-              fileTabs.appendChild(li);
-
-              // 콘텐츠 추가 (파일 확장자에 따라 샘플 코드 넣음)
-              let code = "";
-              if (fileName.endsWith(".html")) {
-                code = `&lt;h1&gt;${fileName} 내용입니다&lt;/h1&gt;`;
-              } else if (fileName.endsWith(".md")) {
-                code = `# ${fileName}\n\n이것은 **${fileName}** 의 내용입니다.`;
-              } else {
-                code = `// ${fileName} 내용`;
-              }
-
-              const div = document.createElement("div");
-              div.className = "tab-pane fade";
-              div.id = contentId;
-              div.setAttribute("role", "tabpanel");
-              div.setAttribute("aria-labelledby", tabId);
-              div.innerHTML = `<pre><code>${code}</code></pre>`;
-              fileTabsContent.appendChild(div);
-
-              // 이벤트 바인딩 갱신
-              bindCloseEvents();
-
-              // 새 탭 활성화
-              new bootstrap.Tab(li.querySelector("a")).show();
-            }
-          });
-        });
-      });
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
