@@ -19,6 +19,25 @@
 
     <!-- CSS 불러오기 -->
     <link rel="stylesheet" href="style.css" />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./favicon-16x16.png"
+    />
+    <link rel="manifest" href="./site.webmanifest" />
   </head>
   <body>
     <div class="main-wrapper">
@@ -102,20 +121,20 @@
 
     <script>
       // 에디터 탭 삽입
-      fetch("/component/editor-tabs.html")
+      fetch("./component/editor-tabs.html")
         .then((res) => res.text())
         .then((html) => {
           document.getElementById("editor-container").innerHTML = html;
 
           // 각 파일 내용 로드
-          fetch("/content/html-content.html")
+          fetch("./content/html-content.html")
             .then((res) => res.text())
             .then((htmlContent) => {
               document.getElementById("fileTabsContent").innerHTML +=
                 htmlContent;
             });
 
-          fetch("/content/md-content.html")
+          fetch("./content/md-content.html")
             .then((res) => res.text())
             .then((mdContent) => {
               document.getElementById("fileTabsContent").innerHTML += mdContent;
@@ -123,7 +142,7 @@
         });
 
       // 터미널 탭 삽입
-      fetch("/component/terminal-tabs.html")
+      fetch("./component/terminal-tabs.html")
         .then((res) => res.text())
         .then((html) => {
           document.getElementById("terminal-container").innerHTML = html;
