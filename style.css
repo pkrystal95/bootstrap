@@ -185,3 +185,110 @@ pre {
   margin: 0; /* 필요하면 마진도 조정 */
   border: none; /* 테두리 제거 */
 }
+
+.md-content-container {
+  padding: 2.5rem 1.5rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff !important;
+  line-height: 1.7;
+  background: none !important;
+  border-radius: 0;
+  box-shadow: none;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.md-contact-row {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+.md-contact-row img {
+  transition: transform 0.15s;
+  border-radius: 8px;
+  background: none !important;
+  box-shadow: none !important;
+}
+.md-contact-row img:hover {
+  transform: scale(1.08) rotate(-2deg);
+  box-shadow: none !important;
+}
+.md-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: #fff !important;
+}
+.md-subtitle {
+  text-align: center;
+  font-size: 1.15rem;
+  margin-bottom: 0.2rem;
+  color: #fff !important;
+}
+.md-desc {
+  text-align: center;
+  margin-bottom: 0.2rem;
+  font-size: 1.02rem;
+  color: #fff !important;
+}
+.md-hr {
+  margin: 2.5rem 0 2rem 0;
+  border: none;
+  border-top: 2px solid #fff;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  background: none !important;
+}
+.md-section {
+  margin-bottom: 2.2rem;
+  background: none !important;
+  border-radius: 0;
+  padding: 1.2rem 1rem 1.1rem 1rem;
+  box-shadow: none !important;
+}
+.md-section h2 {
+  color: #fff !important;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.md-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: flex-start;
+  align-items: center;
+}
+.md-badge-row img {
+  margin-bottom: 0.2rem;
+  border-radius: 6px;
+  box-shadow: none !important;
+  background: none !important;
+  transition: transform 0.13s;
+}
+.md-badge-row img:hover {
+  transform: scale(1.07);
+  box-shadow: none !important;
+}
+@media (max-width: 700px) {
+  .md-content-container {
+    padding: 1.2rem 0.2rem;
+    max-width: 99vw;
+  }
+  .md-section {
+    padding: 0.7rem 0.2rem 0.7rem 0.2rem;
+  }
+  .md-badge-row {
+    gap: 0.4rem;
+  }
+  .md-title {
+    font-size: 1.4rem;
+  }
+}
