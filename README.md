@@ -4,6 +4,8 @@
 
 ## [PREVIEW]
 
+<img width="1825" height="1231" alt="pkrystal95 github io_toy_css_sjcode_" src="https://github.com/user-attachments/assets/2e30b65a-91af-4528-b962-781bcd1e356b" />
+
 ## [개요]
 
 - 개인 포트폴리오를 웹으로 구현한 프로젝트
